@@ -1,0 +1,11 @@
+USBHS:
+  _modify:
+    UEP0_RT_DMA:
+      name: UEP0_RX_DMA
+
+  _array:
+    UEP*_MAX_LEN: {}
+    UEP*_RX_DMA: {}
+#    UEP*_RX_CTRL: {}
+    UEP*_TX_DMA: {}
+#    UEP*_T_LEN: {}

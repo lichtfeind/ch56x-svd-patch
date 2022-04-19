@@ -1,0 +1,15 @@
+SYS:
+  CLK_PLL_DIV:
+    _strip:
+      - "CLK_PLL_"
+  CLK_CFG_CTRL:
+    _strip:
+      - "RB_CLK_"
+    _add:
+      LOCK:
+        description: Must be set to 0b01 or config does not take
+        bitOffset: 6
+        bitWidth: 2
+        access: read-write
+    LOCK:
+      KEY: [ 1, "Must be set to 0b01 or config does not take"]

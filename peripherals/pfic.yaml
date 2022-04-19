@@ -1,0 +1,8 @@
+PFIC:
+  _strip:
+    - "PFIC_"
+  IPRIO*:
+    _modify:
+      IPRIOR*:
+        name: IPRIOR
+

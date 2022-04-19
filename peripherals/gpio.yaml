@@ -1,0 +1,146 @@
+_add:
+  GPIOA:
+    description: ADC Common registers
+    groupName: ADC
+    baseAddress: 0x40001030
+    registers:
+      DIR:
+        description: direction setting register
+        addressOffset: 0x0
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          DIR:
+            description: Input/Output
+            bitOffset: 0
+            bitWidth: 24
+      PIN:
+        description: data input register
+        addressOffset: 0x4
+        access: read-only
+        fields:
+          PIN:
+            description: Input level
+            bitOffset: 0
+            bitWidth: 24
+      OUT:
+        description: data output register
+        addressOffset: 0x8
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          OUT:
+            description: Output level
+            bitOffset: 0
+            bitWidth: 24
+      CLR:
+        description: data reset register
+        addressOffset: 0xc
+        access: write-only
+        resetValue: 0x00000000
+        fields:
+          CLR:
+            description: Output level low
+            bitOffset: 0
+            bitWidth: 24
+      PU:
+        description: pull-up enable register
+        addressOffset: 0x10
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          PU:
+            description: Pull-up enabled
+            bitOffset: 0
+            bitWidth: 24
+      PD:
+        description: pull-down enable register
+        addressOffset: 0x14
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          PD:
+            description: Pull-down enabled
+            bitOffset: 0
+            bitWidth: 24
+      DRV:
+        description: drive capability configuration register
+        addressOffset: 0x18
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          DRV:
+            description: 16mA driving current enabled
+            bitOffset: 0
+            bitWidth: 24
+      SMT:
+        description: low slope output and Schmitt input register
+        addressOffset: 0x1c
+        access: read-write
+        resetValue: 0x00000000
+        fields:
+          SMT:
+            description: Low slope rate enabled and Schmitt input enabled
+            bitOffset: 0
+            bitWidth: 24
+
+  GPIOB:
+    derivedFrom: GPIOA
+    baseAddress: 0x40001060
+
+SYS:
+  "*":
+    _strip:
+      - "PA_"
+      - "PB_"
+
+GPIOA,SYS:
+  "*DIR":
+    _split:
+      DIR:
+        name: DIR%s
+        description: Set GPIO direction for GPIO %s
+    DIR*:
+      Input: [0, "0: Input"]
+      Output: [1, "1: Output"]
+
+  "*PIN":
+    _split:
+      PIN:
+        name: PIN%s
+  "*OUT":
+    _split:
+      OUT:
+        name: OUT%s
+    OUT*:
+      Set: [1, "1: Set pin to 1"]
+      Clear: [0, "0: Set pin to 0"]
+  "*CLR":
+    _split:
+      CLR:
+        name: CLR%s
+    CLR*:
+      Reset: [1, "1: Reset pin to 0"]
+  "*PU":
+    _split:
+      PU:
+        name: PU%s
+  "*PD":
+    _split:
+      PD:
+        name: PD%s
+  "*DRV":
+    _split:
+      DRV:
+        name: DRV%s
+    DRV*:
+      DRV_8mA: [0, "0: 8mA"]
+      DRV_16mA: [1, "1: 16mA"]
+  "*SMT":
+    _split:
+      SMT:
+        name: SMT%s
+    SMT*:
+      Normal_Fast: [0, "0: Low slope output disabled / Schmitt trigger input disabled"]
+      Schmitt_Slow: [1, "1: Low slope output enabled / Schmitt trigger input enabled"]
+

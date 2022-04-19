@@ -1,0 +1,28 @@
+_svd: "../CH56Xxx-1.svd"
+
+_delete:
+  USBSS:
+  SERDES:
+  ETH:
+
+"*":
+  _strip:
+    - "R8_*"
+    - "R16_*"
+    - "R32_*"
+  "*":
+    _strip:
+      - "R8_*"
+      - "R16_*"
+      - "R32_*"
+
+_include:
+  - "../peripherals/gpio.yaml"
+  - "../peripherals/usbhs.yaml"
+  - "../peripherals/uart.yaml"
+  - "../peripherals/usbss.yaml"
+  - "../peripherals/sys.yaml"
+  - "../peripherals/pfic.yaml"
+  - "../peripherals/tmr.yaml"
+
+

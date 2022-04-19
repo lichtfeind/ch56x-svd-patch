@@ -1,0 +1,30 @@
+UART*:
+  _strip:
+    - "UART*_"
+  "*":
+      _strip:
+        - "UART*_"
+        - "RB_*_"
+  _modify:
+    RBR_R8_UART*_THR:
+      name: RBR_THR
+UART0:
+  DIV:
+    _modify:
+      ADR:
+       name: DIV
+  _modify:
+    RBR_R8_UART*_THR:
+      name: RBR_THR
+UART1:
+  _modify:
+    RBR_R8_UART*_THR:
+      name: RBR_THR
+UART2:
+  _modify:
+    RBR_R8_UART*_THR:
+      name: RBR_THR
+UART3:
+  _modify:
+    RBR_R8_UART*_THR:
+      name: RBR_THR

@@ -1,0 +1,14 @@
+TMR*:
+  _strip:
+    - "TMR[012]_"
+  "*":
+    _strip:
+      - "RB_*_"
+      - "TMR?_"
+  CTRL_MOD:
+    _modify:
+      OUT_POLAR_RB_TMR_CAP_COUNT:
+        name: "OUT_POLAR_CAP_COUNT"
+      PWM_REPEAT_RB_TMR_CAP_EDGE:
+        name: " PWM_REPEAT_CAP_EDGE"
+

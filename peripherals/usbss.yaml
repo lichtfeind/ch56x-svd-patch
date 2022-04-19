@@ -1,0 +1,407 @@
+_add:
+  USBSS:
+    description: USB SuperSpeed
+    baseAddress: 0x40008000
+    registers:
+      LINK_CFG:
+        addressOffset: 0x0
+        access: read-write
+        size: 32
+        fields:
+          LINK_PRESENT:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+      LINK_CTRL:
+        addressOffset: 0x4
+        access: read-write
+        size: 32
+        fields:
+          TERM_EN:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          PIPE_RESET:
+            description: temp
+            bitOffset: 3
+            bitWidth: 1
+          LFPS_RX_PD:
+            description:
+            bitOffset: 5
+            bitWidth: 1
+          CFG_EQ_EN:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          DEEMPH_CFG:
+            description:
+            bitOffset: 8
+            bitWidth: 1
+          POLLING_EN:
+            description:
+            bitOffset: 12
+            bitWidth: 1
+      LINK_INT_CTRL:
+        addressOffset: 0x8
+        access: read-write
+        size: 32
+      LINK_INT_FLAG:
+        addressOffset: 0xc
+        access: read-write
+        size: 32
+        fields:
+          LINK_RDY:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          LINK_RECOV:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          LINK_INACT:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          LINK_DISABLE:
+            description:
+            bitOffset: 3
+            bitWidth: 1
+          LINK_GO_U3:
+            description:
+            bitOffset: 4
+            bitWidth: 1
+          LINK_GO_U2:
+            description:
+            bitOffset: 5
+            bitWidth: 1
+          LINK_GO_U1:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          LINK_GO_U0:
+            description:
+            bitOffset: 7
+            bitWidth: 1
+          LINK_U3_WAKE:
+            description:
+            bitOffset: 8
+            bitWidth: 1
+          LINK_Ux_REJECT:
+            description:
+            bitOffset: 9
+            bitWidth: 1
+          TERM_PRESENT:
+            description:
+            bitOffset: 10
+            bitWidth: 1
+          LINK_TXEQ:
+            description:
+            bitOffset: 11
+            bitWidth: 1
+          LINK_Ux_EXIT:
+            description:
+            bitOffset: 12
+            bitWidth: 1
+          WARM_RESET:
+            description:
+            bitOffset: 13
+            bitWidth: 1
+          U3_WAKEUP:
+            description:
+            bitOffset: 14
+            bitWidth: 1
+          HOT_RESET:
+            description:
+            bitOffset: 15
+            bitWidth: 1
+          LINK_RX_DET:
+            description:
+            bitOffset: 20
+            bitWidth: 1
+      LINK_STATUS:
+        addressOffset: 0x10
+        access: read-write
+        size: 32
+        fields:
+          LINK_PRESENT:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          RX_WARM_RESET:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          LINK_BUSY:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          LINK_RX_DETECT:
+            description:
+            bitOffset: 7
+            bitWidth: 1
+      LINK_HP_BUF_CTRL:
+        addressOffset: 0x14
+        access: read-write
+        size: 32
+      LINK_ERR_STATUS:
+        addressOffset: 0x18
+        access: read-write
+        size: 32
+      LINK_ERR_CNT:
+        addressOffset: 0x1c
+        access: read-write
+        size: 32
+      USB_CONTROL:
+        addressOffset: 0x20
+        access: read-write
+        size: 32
+      USB_STATUS:
+        addressOffset: 0x24
+        access: read-write
+        size: 32
+      HOST_STATUS:
+        addressOffset: 0x28
+        access: read-write
+        size: 32
+      USB_RX_LEN:
+        addressOffset: 0x2c
+        access: read-write
+        size: 32
+      USB_ITP:
+        addressOffset: 0x30
+        access: read-write
+        size: 32
+      USB_ITP_ADJ:
+        addressOffset: 0x34
+        access: read-write
+        size: 32
+      LINK_ISO_DLY:
+        addressOffset: 0x38
+        access: read-write
+        size: 32
+      LINK_STREAM_ID:
+        addressOffset: 0x3c
+        access: read-write
+        size: 32
+      LINK_ROUTE_STRING:
+        addressOffset: 0x40
+        access: read-write
+        size: 32
+      USB_FC_CTRL:
+        addressOffset: 0x44
+        access: read-write
+        size: 32
+      LMP_TX_DATA0:
+        addressOffset: 0x48
+        access: read-write
+        size: 32
+      LMP_TX_DATA1:
+        addressOffset: 0x4c
+        access: read-write
+        size: 32
+      LMP_TX_DATA2:
+        addressOffset: 0x50
+        access: read-write
+        size: 32
+      LMP_PORT_CAP:
+        addressOffset: 0x54
+        access: read-write
+        size: 32
+      LMP_RX_DATA0:
+        addressOffset: 0x58
+        access: read-write
+        size: 32
+      LMP_RX_DATA1:
+        addressOffset: 0x5c
+        access: read-write
+        size: 32
+      LMP_RX_DATA2:
+        addressOffset: 0x60
+        access: read-write
+        size: 32
+      TP_RX_DATA0:
+        addressOffset: 0x64
+        access: read-write
+        size: 32
+      TP_RX_DATA1:
+        addressOffset: 0x68
+        access: read-write
+        size: 32
+      TP_RX_DATA2:
+        addressOffset: 0x6c
+        access: read-write
+        size: 32
+      UEP_CFG:
+        addressOffset: 0x70
+        access: read-write
+        size: 32
+        fields:
+          EP_R_EN:
+            description: End point rx enable
+            bitOffset: 0
+            bitWidth: 8
+          EP_T_EN:
+            description: End point tx enable
+            bitOffset: 8
+            bitWidth: 8
+      UEP0_DMA:
+        addressOffset: 0x74
+        access: read-write
+        size: 32
+      UEP0_RX_CTRL:
+        addressOffset: 0x78
+        access: read-write
+        size: 32
+      UEP0_TX_CTRL:
+        addressOffset: 0x7c
+        access: read-write
+        size: 32
+      UEP1_TX_DMA:
+        addressOffset: 0x80
+        access: read-write
+        size: 32
+      UEP1_RX_DMA:
+        addressOffset: 0x84
+        access: read-write
+        size: 32
+      UEP1_RX_CTRL:
+        addressOffset: 0x88
+        access: read-write
+        size: 32
+      UEP1_TX_CTRL:
+        addressOffset: 0x8c
+        access: read-write
+        size: 32
+      UEP2_RX_DMA:
+        addressOffset: 0x90
+        access: read-write
+        size: 32
+      UEP2_TX_DMA:
+        addressOffset: 0x94
+        access: read-write
+        size: 32
+      UEP2_RX_CTRL:
+        addressOffset: 0x98
+        access: read-write
+        size: 32
+      UEP2_TX_CTRL:
+        addressOffset: 0x9c
+        access: read-write
+        size: 32
+      UEP3_TX_DMA:
+        addressOffset: 0xa0
+        access: read-write
+        size: 32
+      UEP3_RX_DMA:
+        addressOffset: 0xa4
+        access: read-write
+        size: 32
+      UEP3_RX_CTRL:
+        addressOffset: 0xa8
+        access: read-write
+        size: 32
+      UEP3_TX_CTRL:
+        addressOffset: 0xac
+        access: read-write
+        size: 32
+      UEP4_TX_DMA:
+        addressOffset: 0xb0
+        access: read-write
+        size: 32
+      UEP4_RX_DMA:
+        addressOffset: 0xb4
+        access: read-write
+        size: 32
+      UEP4_RX_CTRL:
+        addressOffset: 0xb8
+        access: read-write
+        size: 32
+      UEP4_TX_CTRL:
+        addressOffset: 0xbc
+        access: read-write
+        size: 32
+      UEP5_TX_DMA:
+        addressOffset: 0xc0
+        access: read-write
+        size: 32
+      UEP5_RX_DMA:
+        addressOffset: 0xc4
+        access: read-write
+        size: 32
+      UEP5_RX_CTRL:
+        addressOffset: 0xc8
+        access: read-write
+        size: 32
+      UEP5_TX_CTRL:
+        addressOffset: 0xcc
+        access: read-write
+        size: 32
+      UEP6_TX_DMA:
+        addressOffset: 0xd0
+        access: read-write
+        size: 32
+      UEP6_RX_DMA:
+        addressOffset: 0xd4
+        access: read-write
+        size: 32
+      UEP6_RX_CTRL:
+        addressOffset: 0xd8
+        access: read-write
+        size: 32
+      UEP6_TX_CTRL:
+        addressOffset: 0xdc
+        access: read-write
+        size: 32
+      UEP7_TX_DMA:
+        addressOffset: 0xe0
+        access: read-write
+        size: 32
+      UEP7_RX_DMA:
+        addressOffset: 0xe4
+        access: read-write
+        size: 32
+      UEP7_RX_CTRL:
+        addressOffset: 0xe8
+        access: read-write
+        size: 32
+      UEP7_TX_CTRL:
+        addressOffset: 0xec
+        access: read-write
+        size: 32
+      UX_EXIT_TIMER:
+        addressOffset: 0xf0
+        access: read-write
+        size: 32
+    interrupts:
+      NMI:
+        description: USBSS interrupt
+        value: 0
+      HARDFAULT:
+        description: USBSS interrupt
+        value: 1
+      SYSTICK:
+        description: USBSS interrupt
+        value: 2
+      SW:
+        description: USBSS interrupt
+        value: 3
+      WDOG:
+        description: USBSS interrupt
+        value: 4
+      TMR0:
+        description: USBSS interrupt
+        value: 5
+      GPIO:
+        description: USBSS interrupt
+        value: 6
+      SPI0:
+        description: USBSS interrupt
+        value: 7
+      USBSS:
+        description: USBSS interrupt
+        value: 8
+
+#USBSS:
+#  _array:
+#    UEP*RX_CTRL: {}
+#    UEP*TX_CTRL: {}
