@@ -24,5 +24,7 @@ _include:
   - "../peripherals/sys.yaml"
   - "../peripherals/pfic.yaml"
   - "../peripherals/tmr.yaml"
+  - "../peripherals/emmc.yaml"
+  - "../peripherals/pwmx.yaml"
 
 

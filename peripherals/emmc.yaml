@@ -1,0 +1,13 @@
+EMMC:
+  EMMC_RESPONSE*:
+    _modify:
+      EMMC_RESPONSE1:
+        bitRange: "[31:0]"
+      EMMC_RESPONSE2:
+        bitRange: "[31:0]"
+      EMMC_RESPONSE3:
+        bitRange: "[31:0]"
+  EMMC_WRITE_CONT:
+    _modify:
+      EMMC_WRITE_CONT:
+        bitRange: "[31:0]"

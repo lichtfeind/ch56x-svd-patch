@@ -1,0 +1,6 @@
+PWMX:
+# This are 4 8bit register. Might be better to make it one 32bit register?
+  PWM?_DATA:
+    _modify:
+      PWM?_DATA:
+        bitRange: "[7:0]"
