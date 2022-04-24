@@ -8,21 +8,8 @@ _add:
         access: read-write
         size: 32
         fields:
-          LINK_PRESENT:
-            description:
-            bitOffset: 0
-            bitWidth: 1
-      LINK_CTRL:
-        addressOffset: 0x4
-        access: read-write
-        size: 32
-        fields:
-          TERM_EN:
-            description:
-            bitOffset: 1
-            bitWidth: 1
           PIPE_RESET:
-            description: temp
+            description:
             bitOffset: 3
             bitWidth: 1
           LFPS_RX_PD:
@@ -37,14 +24,116 @@ _add:
             description:
             bitOffset: 8
             bitWidth: 1
+          TERM_EN:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          HP_PENDING:
+            description:
+            bitOffset: 19
+            bitWidth: 1
+          DOWN_FLAG:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+      LINK_CTRL:
+        addressOffset: 0x4
+        access: read-write
+        size: 32
+        fields:
+          POWER_MODE:
+            description:
+            bitOffset: 0
+            bitWidth: 2
+          GO_DISABLED:
+            description:
+            bitOffset: 4
+            bitWidth: 1
           POLLING_EN:
             description:
             bitOffset: 12
+            bitWidth: 1
+          TX_WARM_RESET:
+            description:
+            bitOffset: 8
+            bitWidth: 1
+          TX_HOT_RESET:
+            description:
+            bitOffset: 16
             bitWidth: 1
       LINK_INT_CTRL:
         addressOffset: 0x8
         access: read-write
         size: 32
+        fields:
+          LINK_RDY:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          LINK_RECOV:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          LINK_INACT:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          LINK_DISABLE:
+            description:
+            bitOffset: 3
+            bitWidth: 1
+          LINK_GO_U3:
+            description:
+            bitOffset: 4
+            bitWidth: 1
+          LINK_GO_U2:
+            description:
+            bitOffset: 5
+            bitWidth: 1
+          LINK_GO_U1:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          LINK_GO_U0:
+            description:
+            bitOffset: 7
+            bitWidth: 1
+          LINK_U3_WAKE:
+            description:
+            bitOffset: 8
+            bitWidth: 1
+          LINK_Ux_REJECT:
+            description:
+            bitOffset: 9
+            bitWidth: 1
+          TERM_PRESENT:
+            description:
+            bitOffset: 10
+            bitWidth: 1
+          LINK_TXEQ:
+            description:
+            bitOffset: 11
+            bitWidth: 1
+          LINK_Ux_EXIT:
+            description:
+            bitOffset: 12
+            bitWidth: 1
+          WARM_RESET:
+            description:
+            bitOffset: 13
+            bitWidth: 1
+          U3_WAKEUP:
+            description:
+            bitOffset: 14
+            bitWidth: 1
+          HOT_RESET:
+            description:
+            bitOffset: 15
+            bitWidth: 1
+          LINK_RX_DET:
+            description:
+            bitOffset: 20
+            bitWidth: 1
       LINK_INT_FLAG:
         addressOffset: 0xc
         access: read-write
@@ -155,10 +244,64 @@ _add:
         addressOffset: 0x20
         access: read-write
         size: 32
+        fields:
+          USB_FORCE_RST:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          USB_ALL_CLR:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          ITP_EN:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          INT_BUSY_EN:
+            description:
+            bitOffset: 3
+            bitWidth: 1
+          DMA_EN:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          ADDR:
+            description: USB device address
+            bitOffset: 24
+            bitWidth: 8
       USB_STATUS:
         addressOffset: 0x24
         access: read-write
         size: 32
+        fields:
+          ACT_FLAG:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          LMP_RX_FLAG:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          LMP_TX_FLAG:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          ITP_RX_FLAG:
+            description:
+            bitOffset: 3
+            bitWidth: 1
+          OV_FLAG:
+            description:
+            bitOffset: 5
+            bitWidth: 1
+          UEP_NUM:
+            description:
+            bitOffset: 8
+            bitWidth: 3
+          IN_OUT:
+            description:
+            bitOffset: 12
+            bitWidth: 1
       HOST_STATUS:
         addressOffset: 0x28
         access: read-write
@@ -192,14 +335,39 @@ _add:
         access: read-write
         size: 32
       LMP_TX_DATA0:
+        description: Link Management Packet
         addressOffset: 0x48
         access: read-write
         size: 32
+        fields:
+          LINK_SPEED:
+            description:
+            bitOffset: 9
+            bitWidth: 1
+          LMP:
+            description:
+            bitOffset: 5
+            bitWidth: 4
+          LMP_HP:
+            description:
+            bitOffset: 2
+            bitWidth: 1
       LMP_TX_DATA1:
+        description: Link Management Packet
         addressOffset: 0x4c
         access: read-write
         size: 32
+        fields:
+          UP_STREAM:
+            description:
+            bitOffset: 2
+            bitWidth: 1
+          NUM_HP_BUF:
+            description:
+            bitOffset: 2
+            bitWidth: 1
       LMP_TX_DATA2:
+        description: Link Management Packet
         addressOffset: 0x50
         access: read-write
         size: 32
@@ -401,7 +569,10 @@ _add:
         description: USBSS interrupt
         value: 8
 
-#USBSS:
-#  _array:
-#    UEP*RX_CTRL: {}
-#    UEP*TX_CTRL: {}
+USBSS:
+  LINK_CTRL:
+    POWER_MODE:
+      MODE0: [0, "a"]
+      MODE1: [1, "a"]
+      MODE2: [2, "a"]
+      MODE3: [3, "a"]
