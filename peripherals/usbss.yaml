@@ -540,34 +540,6 @@ _add:
         addressOffset: 0xf0
         access: read-write
         size: 32
-    interrupts:
-      NMI:
-        description: USBSS interrupt
-        value: 0
-      HARDFAULT:
-        description: USBSS interrupt
-        value: 1
-      SYSTICK:
-        description: USBSS interrupt
-        value: 2
-      SW:
-        description: USBSS interrupt
-        value: 3
-      WDOG:
-        description: USBSS interrupt
-        value: 4
-      TMR0:
-        description: USBSS interrupt
-        value: 5
-      GPIO:
-        description: USBSS interrupt
-        value: 6
-      SPI0:
-        description: USBSS interrupt
-        value: 7
-      USBSS:
-        description: USBSS interrupt
-        value: 8
 
 USBSS:
   LINK_CTRL:
