@@ -1,13 +1,9 @@
 
 #!/bin/bash
 
-if [ ! -f "CH56Xxx-1.svd" ]; then
-    wget https://git.swzry.com/zry/zerosp-ch56x-pac/raw/master/pre-work/CH56Xxx-Fixed.svd -O CH56Xxx-1.svd
-fi
-
 ~/.local/bin/svd patch devices/ch569.yaml
 
-svd2rust -g --target=riscv -i CH56Xxx-1.svd.patched
+svd2rust -g --target=riscv -i CH56Xxx.svd.patched
 rm -rf src
 form -i lib.rs -o src/ && rm lib.rs
 mv generic.rs src/

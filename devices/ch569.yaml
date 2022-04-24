@@ -1,4 +1,4 @@
-_svd: "../CH56Xxx-1.svd"
+_svd: "../CH56Xxx.svd"
 
 _delete:
   USBSS:
