@@ -2,14 +2,21 @@
 name = "ch569-rs"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/lichtfeind/ch56x-svd-patch"
+authors = ["Jonas Martin <lichtfeind@gmail.com>"]
+license = "MIT"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 vcell = "0.1.0"
 riscv = "0.7.0"
-riscv-rt = "0.8.1"
+
+[dependencies.riscv-rt]
+optional = true
+version = "0.8.1"
 
 [features]
-rt = []
+rt = ["riscv-rt"]
 
