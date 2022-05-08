@@ -8,9 +8,25 @@ _add:
         access: read-write
         size: 32
         fields:
+          DOWN_FLAG:
+            description:
+            bitOffset: 0
+            bitWidth: 1
+          TERM_EN:
+            description:
+            bitOffset: 1
+            bitWidth: 1
+          DEVICE_PHY:
+            description:
+            bitOffset: 2
+            bitWidth: 1
           PIPE_RESET:
             description:
             bitOffset: 3
+            bitWidth: 1
+          COMPLIANCE_EN:
+            description:
+            bitOffset: 4
             bitWidth: 1
           LFPS_RX_PD:
             description:
@@ -20,21 +36,29 @@ _add:
             description:
             bitOffset: 6
             bitWidth: 1
+          TX_SWING:
+            description:
+            bitOffset: 7
+            bitWidth: 1
           DEEMPH_CFG:
             description:
             bitOffset: 8
             bitWidth: 1
-          TERM_EN:
+          LPM_EN:
             description:
-            bitOffset: 1
+            bitOffset: 12
+            bitWidth: 1
+          U1_ALLOW:
+            description:
+            bitOffset: 16
+            bitWidth: 1
+          U2_ALLOW:
+            description:
+            bitOffset: 17
             bitWidth: 1
           HP_PENDING:
             description:
-            bitOffset: 19
-            bitWidth: 1
-          DOWN_FLAG:
-            description:
-            bitOffset: 0
+            bitOffset: 20 # TODO: (2<<19)
             bitWidth: 1
       LINK_CTRL:
         addressOffset: 0x4
@@ -49,13 +73,41 @@ _add:
             description:
             bitOffset: 4
             bitWidth: 1
-          POLLING_EN:
+          GO_INACTIVE:
             description:
-            bitOffset: 12
+            bitOffset: 5
+            bitWidth: 1
+          GO_RECOVERY:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          GO_RX_DET:
+            description:
+            bitOffset: 7
             bitWidth: 1
           TX_WARM_RESET:
             description:
             bitOffset: 8
+            bitWidth: 1
+          TX_UX_EXIT:
+            description:
+            bitOffset: 9
+            bitWidth: 1
+          POLLING_EN:
+            description:
+            bitOffset: 12
+            bitWidth: 1
+          TX_LGO_U1:
+            description:
+            bitOffset: 13
+            bitWidth: 1
+          TX_LGO_U2:
+            description:
+            bitOffset: 14
+            bitWidth: 1
+          TX_LGO_U3:
+            description:
+            bitOffset: 15
             bitWidth: 1
           TX_HOT_RESET:
             description:
@@ -224,9 +276,53 @@ _add:
             description:
             bitOffset: 2
             bitWidth: 1
+          LINK_READY:
+            description:
+            bitOffset: 3
+            bitWidth: 1
+          LINK_TXEQ:
+            description:
+            bitOffset: 6
+            bitWidth: 1
           LINK_RX_DETECT:
             description:
             bitOffset: 7
+            bitWidth: 1
+          LINK_U0:
+            description:
+            bitOffset: 8
+            bitWidth: 1
+          LINK_U1:
+            description:
+            bitOffset: 9
+            bitWidth: 1
+          LINK_U2:
+            description:
+            bitOffset: 10
+            bitWidth: 1
+          LINK_U3:
+            description:
+            bitOffset: 11
+            bitWidth: 1
+          LINK_DISABLED:
+            description:
+            bitOffset: 12
+            bitWidth: 1
+          LINK_INACT:
+            description:
+            bitOffset: 13
+            bitWidth: 1
+          LINK_LOOPBACK:
+            description:
+            bitOffset: 14
+            bitWidth: 1
+          LINK_COMPLIANCE:
+            description:
+            bitOffset: 15
+            bitWidth: 1
+          RX_Ux_EXIT_REQ:
+            description:
+            bitOffset: 16
             bitWidth: 1
       LINK_HP_BUF_CTRL:
         addressOffset: 0x14
@@ -245,25 +341,61 @@ _add:
         access: read-write
         size: 32
         fields:
-          USB_FORCE_RST:
+          DMA_EN:
             description:
-            bitOffset: 2
+            bitOffset: 0
             bitWidth: 1
           USB_ALL_CLR:
             description:
             bitOffset: 1
             bitWidth: 1
-          ITP_EN:
+          USB_FORCE_RST:
             description:
-            bitOffset: 6
+            bitOffset: 2
             bitWidth: 1
           INT_BUSY_EN:
             description:
             bitOffset: 3
             bitWidth: 1
-          DMA_EN:
+          DIR_ABORT:
             description:
-            bitOffset: 0
+            bitOffset: 4
+            bitWidth: 1
+          SETUP_FLOW_EN:
+            description: if enable, data stage/status stage will begin after send ERDY
+            bitOffset: 5
+            bitWidth: 1
+          ITP_EN:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          HOST_MODE:
+            description:
+            bitOffset: 6
+            bitWidth: 1
+          USB_ACT_IE:
+            description:
+            bitOffset: 16
+            bitWidth: 1
+          USB_LMP_RX_IE:
+            description:
+            bitOffset: 17
+            bitWidth: 1
+          USB_LMP_TX_IE:
+            description:
+            bitOffset: 18
+            bitWidth: 1
+          USB_ITP_IE:
+            description:
+            bitOffset: 19
+            bitWidth: 1
+          USB_OV_IE:
+            description:
+            bitOffset: 20
+            bitWidth: 1
+          USB_ERDY_IE:
+            description:
+            bitOffset: 21
             bitWidth: 1
           ADDR:
             description: USB device address
@@ -292,15 +424,47 @@ _add:
             bitWidth: 1
           OV_FLAG:
             description:
+            bitOffset: 4
+            bitWidth: 1
+          USB_ERDY_FLAG:
+            description:
             bitOffset: 5
             bitWidth: 1
-          UEP_NUM:
+          USB_INT_EP:
             description:
             bitOffset: 8
             bitWidth: 3
           IN_OUT:
             description:
             bitOffset: 12
+            bitWidth: 1
+          USB_INT_RES:
+            description:
+            bitOffset: 14
+            bitWidth: 2
+          USB_NUMP:
+            description:
+            bitOffset: 18
+            bitWidth: 5
+          SEQ:
+            description:
+            bitOffset: 21
+            bitWidth: 5
+          TX_LPF:
+            description:
+            bitOffset: 28
+            bitWidth: 1
+          STATUS_IS:
+            description:
+            bitOffset: 29
+            bitWidth: 1
+          SETUP_IS:
+            description:
+            bitOffset: 30
+            bitWidth: 1
+          EP_INT_FLAG:
+            description:
+            bitOffset: 31
             bitWidth: 1
       HOST_STATUS:
         addressOffset: 0x28
@@ -405,13 +569,21 @@ _add:
         size: 32
         fields:
           EP_R_EN:
-            description: End point rx enable
+            description: Endpoint rx enable 0-7
             bitOffset: 0
             bitWidth: 8
           EP_T_EN:
-            description: End point tx enable
+            description: Endpoint tx enable 0-7
             bitOffset: 8
             bitWidth: 8
+          EP_R_ISO: # TODO maybe make that 0-7?
+            description: ISO receive enable 1-7
+            bitOffset: 17
+            bitWidth: 7
+          EP_T_ISO:
+            description: ISO transmit enable 1-7
+            bitOffset: 25
+            bitWidth: 7
       UEP0_DMA:
         addressOffset: 0x74
         access: read-write
@@ -420,10 +592,52 @@ _add:
         addressOffset: 0x78
         access: read-write
         size: 32
+        fields:
+          LEN:
+            description:
+            bitOffset: 0
+            bitWidth: 16
+          NUMP:
+            description:
+            bitOffset: 16
+            bitWidth: 5
+          IT:
+            description:
+            bitOffset: 21
+            bitWidth: 5
+          STATUS:
+            description:
+            bitOffset: 26
+            bitWidth: 3
       UEP0_TX_CTRL:
         addressOffset: 0x7c
         access: read-write
         size: 32
+        fields:
+          TX_LEN:
+            description:
+            bitOffset: 0
+            bitWidth: 9
+          NUMP:
+            description:
+            bitOffset: 16
+            bitWidth: 5
+          IT:
+            description:
+            bitOffset: 21
+            bitWidth: 5
+          STATUS:
+            description:
+            bitOffset: 26
+            bitWidth: 2
+          LPF:
+            description: Last Packet Flag(Burst)
+            bitOffset: 28
+            bitWidth: 1
+          TOGGLE:
+            description:
+            bitOffset: 31
+            bitWidth: 1
       UEP1_TX_DMA:
         addressOffset: 0x80
         access: read-write
@@ -548,3 +762,9 @@ USBSS:
       MODE1: [1, "a"]
       MODE2: [2, "a"]
       MODE3: [3, "a"]
+  USB_STATUS:
+    USB_INT_RES:
+      ACK: [0, "a"]
+      ERDY: [1, "a"]
+      NRDY: [2, "a"]
+      STALL: [3, "a"]
