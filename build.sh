@@ -1,5 +1,6 @@
-
 #!/bin/bash
+
+set -e
 
 ~/.local/bin/svd patch devices/ch569.yaml
 
