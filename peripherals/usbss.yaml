@@ -498,6 +498,23 @@ _add:
         addressOffset: 0x44
         access: read-write
         size: 32
+        fields:
+          NUMP:
+            description:
+            bitOffset: 6
+            bitWidth: 8
+          EP:
+            description:
+            bitOffset: 2
+            bitWidth: 4
+          IN_OUT:
+            description: "0: OUT, 1: IN"
+            bitOffset: 1
+            bitWidth: 1
+          ERDY:
+            description:
+            bitOffset: 0
+            bitWidth: 1
       LMP_TX_DATA0:
         description: Link Management Packet
         addressOffset: 0x48
@@ -609,6 +626,14 @@ _add:
             description:
             bitOffset: 26
             bitWidth: 3
+            # NRDY 0
+            # ACK 1
+            # STALL 2
+            # INVALID 3
+
+            # 0x1 Setup status
+            # 0x2 OUT
+            # 0x2 OUT
       UEP0_TX_CTRL:
         addressOffset: 0x7c
         access: read-write
