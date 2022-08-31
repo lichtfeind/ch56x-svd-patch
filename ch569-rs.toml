@@ -1,5 +1,5 @@
 [package]
-name = "ch569-rs"
+name = "ch569"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/lichtfeind/ch56x-svd-patch"
